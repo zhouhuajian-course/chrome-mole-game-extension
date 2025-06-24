@@ -9,5 +9,8 @@
     "default_icon": {
       "128": "icon-hole.png"
     }
+  },
+  "background": {
+    "service_worker": "service-worker.js"
   }
 }
