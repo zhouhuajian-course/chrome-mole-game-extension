@@ -17,3 +17,12 @@ chrome.action.onClicked.addListener(() => {
   hideMole()
 })
 
+chrome.runtime.onMessageExternal.addListener((message) => {
+  // console.log(message)
+  showMole()
+  setTimeout(() => {
+    hideMole()
+  }, 2000)
+
+})
+

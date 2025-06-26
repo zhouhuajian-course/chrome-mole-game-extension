@@ -9,5 +9,12 @@
     "default_icon": {
       "128": "icon.png"
     }
-  }
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "permissions": [
+    "alarms",
+    "management"
+  ]
 }
