@@ -1,4 +1,6 @@
 let moleShowing = false
+let controllerId = ''
+
 function showMole() {
   chrome.action.setIcon({ path: "icon-mole.png" })
   moleShowing = true
@@ -14,11 +16,14 @@ chrome.action.onClicked.addListener(() => {
     return
   }
   console.log('地鼠被打中了，分数 +1')
+  chrome.runtime.sendMessage(controllerId, { content: '地鼠被打中了，请将分数 +1' })
+
   hideMole()
 })
 
 chrome.runtime.onMessageExternal.addListener((message) => {
-  // console.log(message)
+  console.log(message)
+  controllerId = message.controllerId
   showMole()
   setTimeout(() => {
     hideMole()

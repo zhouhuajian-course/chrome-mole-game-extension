@@ -10,7 +10,15 @@ chrome.alarms.onAlarm.addListener(async () => {
 
   chrome.runtime.sendMessage(
     moles[Math.floor(Math.random() * moles.length)].id,
-    { content: '请出现地鼠' }
+    { content: '请出现地鼠', controllerId: chrome.runtime.id }
   )
+
+})
+
+let counter = 0
+chrome.runtime.onMessageExternal.addListener((message) => {
+  console.log(message)
+  counter++
+  chrome.action.setBadgeText({ text: counter + '' })
 
 })
