@@ -22,7 +22,7 @@ chrome.action.onClicked.addListener(() => {
 })
 
 chrome.runtime.onMessageExternal.addListener((message) => {
-  console.log(message)
+  // console.log(message)
   controllerId = message.controllerId
   showMole()
   setTimeout(() => {

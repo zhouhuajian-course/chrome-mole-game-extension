@@ -17,7 +17,7 @@ chrome.alarms.onAlarm.addListener(async () => {
 
 let counter = 0
 chrome.runtime.onMessageExternal.addListener((message) => {
-  console.log(message)
+  // console.log(message)
   counter++
   chrome.action.setBadgeText({ text: counter + '' })
 
