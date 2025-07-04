@@ -1,5 +1,6 @@
 let moleShowing = false
 let controllerId = ''
+let timeoutId = 0
 
 function showMole() {
   chrome.action.setIcon({ path: "icon-mole.png" })
@@ -16,6 +17,7 @@ chrome.action.onClicked.addListener(() => {
     return
   }
   console.log('地鼠被打中了，分数 +1')
+  clearTimeout(timeoutId)
   chrome.runtime.sendMessage(controllerId, { content: '地鼠被打中了，请将分数 +1' })
 
   hideMole()
@@ -25,8 +27,14 @@ chrome.runtime.onMessageExternal.addListener((message) => {
   // console.log(message)
   controllerId = message.controllerId
   showMole()
-  setTimeout(() => {
+  // 失败 没打中地鼠
+  timeoutId = setTimeout(async () => {
     hideMole()
+    const newTabs = await chrome.tabs.query({ title: '新标签页' })
+    if (newTabs.length > 0) {
+      chrome.tabs.remove(newTabs[newTabs.length - 1].id)
+
+    }
   }, 2000)
 
 })
