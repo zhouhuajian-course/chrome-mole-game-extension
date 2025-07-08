@@ -32,8 +32,8 @@ chrome.runtime.onMessageExternal.addListener((message) => {
     hideMole()
     const newTabs = await chrome.tabs.query({ title: '新标签页' })
     if (newTabs.length > 0) {
-      chrome.tabs.remove(newTabs[newTabs.length - 1].id)
-
+      // 错过一个地鼠关闭一个标签页的功能默认关闭，如果需要开启该功能，请反注释下面的代码
+      // chrome.tabs.remove(newTabs[newTabs.length - 1].id)
     }
   }, 2000)
 
